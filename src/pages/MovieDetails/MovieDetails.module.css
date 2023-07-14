@@ -1,0 +1,8 @@
+.detailsWrap {
+  display: flex;
+  margin-bottom: 40px;
+  gap: 50px;
+}
+.detailsBtn {
+  margin-bottom: 20px;
+}

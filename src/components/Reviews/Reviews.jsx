@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/getMovies';
-import { Loader } from './Loader/Loader';
+import { Loader } from '../Loader/Loader';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
-  const [error, setError] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,7 +16,7 @@ export const Reviews = () => {
         console.log(data);
         setReviews(data.results);
       } catch (error) {
-        setError(error.message);
+        console.log(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -45,3 +44,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

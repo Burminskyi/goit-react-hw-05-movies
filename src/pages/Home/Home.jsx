@@ -1,11 +1,9 @@
-import { MoviesList } from 'components/MoviesList';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getTrendingMovies } from 'services/getMovies';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState('');
   const page = 'homePage';
 
   useEffect(() => {
@@ -14,21 +12,18 @@ export const Home = () => {
         const data = await getTrendingMovies();
         setMovies(data.results);
       } catch (error) {
-        setError(error.message);
+        console.log(error.message);
       }
     };
     updateComponent();
-
-    // getTrendingMovies().then(data => {
-    //   console.log(data.results);
-    //   setMovies(data.results);
-    // });
   }, []);
 
   return (
     <>
       <h1>Trending today</h1>
-          {movies && <MoviesList movies={movies} page={page} />}
+      {movies && <MoviesList movies={movies} page={page} />}
     </>
   );
 };
+
+export default Home;

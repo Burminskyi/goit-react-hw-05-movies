@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'services/getMovies';
-import { Loader } from './Loader/Loader';
+import { Loader } from '../Loader/Loader';
 
-export const Cast = () => {
+const Cast = () => {
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
-  const [error, setError] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -16,7 +15,7 @@ export const Cast = () => {
         const data = await getMovieCredits(movieId);
         setCredits(data.cast);
       } catch (error) {
-        setError(error.message);
+        console.log(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -51,3 +50,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;
